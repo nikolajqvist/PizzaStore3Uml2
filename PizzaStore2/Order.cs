@@ -8,8 +8,6 @@ namespace PizzaStore2
 {
     public class Order
     {
-        //I den her class opretter jeg en ordre med hjælp fra Pizza.cs og Costumer.cs. Har lavet det sådan så en ordre ikke kan oprettes uden en Pizza, en kunde 
-        // og hvor mange pizzaer de vil have.
         private Pizza _pizza;
         private Costumer _name;
         private Pizza _price;
@@ -18,44 +16,72 @@ namespace PizzaStore2
         private int _orderNumber;
         private static int _idcounter = 0;
         private DateTime _date;
-        private int _numberOfPizza;
+        private int _delivery = 40;
+        private int _numberOfPizzas;
 
+        private List<Pizza> _pizzaList = new List<Pizza>();
+        private List<Costumer> _costumerList = new List<Costumer>();
 
-
-        ///Her er hvad en ordre skal indeholde
-        public Order(Pizza Pizza, Costumer Name, int NumberOfPizza) 
+        public Order() 
         {
             _orderId = _idcounter;
             _idcounter++;
             _pizza = Pizza;
             _name = Name;
-            _totalPrice = TotalPrice;
+            _totalPrice += _delivery;
             _date = DateTime.Now;
             _price = Price;
-            _numberOfPizza = NumberOfPizza;
+            _numberOfPizzas = NumberOfPizzas;
 
         }
-        //Det her er mine properties.
         public Pizza Pizza { get => _pizza; set => _pizza = value; }
         public Costumer Name { get => _name; set => _name = value; }
         public Pizza Price { get => _price; set => _price = value; }
         public int TotalPrice { get { return _totalPrice; } }
         public DateTime Date { get { return _date; } }
-        public int NumberOfPizza { get { return _numberOfPizza; } }
         public int OrderId { get => _orderId; private set => _orderId = value; }
         public int OrderNumber { get { return _orderNumber; } }
-        
-        //Her laver jeg en metode som udregner hele prisen for ordren.
-        public void CalculateTotalPrice()
+
+        public int NumberOfPizzas { get => _numberOfPizzas; set => _numberOfPizzas = value; }
+
+        public void OrderPriceTotal()
         {
-            _totalPrice = Pizza.Price * NumberOfPizza + 40;
+            foreach (Pizza pizza in _pizzaList)
+            { 
+                _totalPrice += pizza.Price; 
+            }
         }
-        //Her udskriver jeg hvad en ordre skal indeholde.  \n giver mellemrum.
+        public void AddPizzaToOrder(Pizza Pizza)
+        {
+            _pizzaList.Add(Pizza);
+        }
+        public void RemovePizzaFromOrder(Pizza Pizza)
+        {
+            Console.WriteLine("Fortrudt valg.");
+            _pizzaList.Remove(Pizza);
+            _totalPrice -= Pizza.Price;
+        }
+        public void AddCostumer(Costumer costumer)
+        {
+            _costumerList.Add(costumer);
+        }
+        public void RemoveCostumer(Costumer costumer)
+        {
+            _costumerList.Remove(costumer);
+            Console.WriteLine($"{costumer.CostumerName} har trudt sin ordre.");
+            _pizzaList.Remove(Pizza);
+        }
         public override string ToString()
         {
-            return $"Ordernr:{OrderId} Tid:{Date}. {Pizza} kr.\n" +
-                $" + 40 kr. in shipping and the total price is" +
-                $" {TotalPrice} kr. \n and there is {NumberOfPizza} pizzas. For {Name}!";
+            StringBuilder sb = new StringBuilder();
+            foreach (Pizza pizza in _pizzaList)
+            {
+                sb.AppendLine(pizza.ToString());
+            }
+
+            sb.AppendLine($"totalprice: {_totalPrice}kr.");
+
+            return sb.ToString();
         }
     }
 }

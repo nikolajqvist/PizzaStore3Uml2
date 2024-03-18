@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PizzaStore3;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -9,31 +10,39 @@ namespace PizzaStore2
 {
     public class PizzaStore
     {
-        //Her opretter jeg min Start metode som jeg så skriver alle mine pizzaer, costumers og ordre i også udskriver jeg det hele.
-        public void Start()
+        public void MenuChoice()
         {
-            //Når man kalder en costruktor med objekter i skal den puttes i en metode.
-            //Her opretter jeg alle mine objekter til mine classes.
-            Pizza pizza1 = new Pizza("Margarita", 100);
-            Costumer cos1 = new Costumer("Mogens", 56);
-            Order order1 = new Order(pizza1, cos1, 1);
-            order1.CalculateTotalPrice();
-            Console.WriteLine(order1);
+            //Opgaver tilbage:
+            //Ordreliste
+            //Update (pizza, costumer, order)
+            //Searchcriteria
+            //user dialog.
+            //
+            //
+            //
+            MenuCatalog catalog = new MenuCatalog();
+            Costumers costumers = new Costumers();
+            Order order = new Order();
+            catalog.PrintMenu();
+            order.AddCostumer(costumers.Costumerss1[0]);
+            Console.WriteLine($"{costumers.Costumerss1[0]} bestiller 2 pizzaer en {catalog.MenuList1[0].PizzaName} og en {catalog.MenuList1[1].PizzaName}.");
+            order.AddPizzaToOrder(catalog.MenuList1[0]);
+            order.AddPizzaToOrder(catalog.MenuList1[1]);
+            order.OrderPriceTotal();
+            order.RemovePizzaFromOrder(catalog.MenuList1[1]);
+            Console.WriteLine(order.ToString());
 
-            Pizza pizza2 = new Pizza("Pepperoni", 100);
-            Costumer cos2 = new Costumer("Vibeke", 51);
-            Order order2 = new Order(pizza2, cos2, 2);
-            order2.CalculateTotalPrice();
-            Console.WriteLine(order2);
-
-            Pizza pizza3 = new Pizza("Meatzzo", 100);
-            Costumer cos3 = new Costumer("Camilla", 41);
-            Order order3 = new Order(pizza3, cos3, 4);
-            order3.CalculateTotalPrice();
-            Console.WriteLine(order3);
+            Order order2 = new Order();
+            order2.AddCostumer(costumers.Costumerss1[1]);
+            Console.WriteLine($"{costumers.Costumerss1[1]} bestiller {order2.NumberOfPizzas} pizzaer en {catalog.MenuList1[1]}, en {catalog.MenuList1[2]} og en {catalog.MenuList1[0]}");
+            order2.AddPizzaToOrder(catalog.MenuList1[2]);
+            order2.AddPizzaToOrder(catalog.MenuList1[1]);
+            order2.AddPizzaToOrder(catalog.MenuList1[0]);
+            order2.OrderPriceTotal();
+            order2.RemoveCostumer(costumers.Costumerss1[1]);
+            Console.WriteLine(order2.ToString());
 
             Console.ReadKey();
-            
         }
     }
 }
