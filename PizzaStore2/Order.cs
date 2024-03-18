@@ -18,10 +18,8 @@ namespace PizzaStore2
         private DateTime _date;
         private int _delivery = 40;
         private int _numberOfPizzas;
-
         private List<Pizza> _pizzaList = new List<Pizza>();
         private List<Costumer> _costumerList = new List<Costumer>();
-
         public Order() 
         {
             _orderId = _idcounter;
