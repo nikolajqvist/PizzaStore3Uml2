@@ -20,7 +20,9 @@ namespace PizzaStore3
             {
                 new Pizza("Margarita", 100),
                 new Pizza("Meatzza", 100),
-                new Pizza("Mikispecial", 100)
+                new Pizza("Mikispecial", 100),
+                //New pizza to list
+                new Pizza("Alot of alot", 100)
             };
 
         public List<Pizza> MenuCatalogList1 { get => MenuCatalogList; set => MenuCatalogList = value; }
@@ -29,7 +31,7 @@ namespace PizzaStore3
 
         public void PrintMenu()
         {
-            Console.WriteLine("Pizza Menu:");
+            Console.WriteLine($"Pizza Menu:");
             foreach (Pizza pizza in MenuCatalogList)
             {
                 Console.WriteLine($"{pizza}");

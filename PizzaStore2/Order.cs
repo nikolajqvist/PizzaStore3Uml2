@@ -50,16 +50,6 @@ namespace PizzaStore2
         #endregion
 
         #region Methods
-        public void AddCostumer(Costumer costumer)
-        {
-            _costumerList.Add(costumer);
-        }
-        public void RemoveCostumer(Costumer costumer)
-        {
-            _costumerList.Remove(costumer);
-            Console.WriteLine($"{costumer.CostumerName} har fortrudt sin ordre.");
-            _pizzaList.Remove(Pizza);
-        }
         public void UpdatePizza(int newPrice, string name)
         {
             for (int i = 0; i < _pizzaList.Count; i++)
@@ -78,7 +68,6 @@ namespace PizzaStore2
         {
             Console.WriteLine("Fortrudt valg.");
             _pizzaList.Remove(Pizza);
-            _totalPrice -= Pizza.Price;
         }
         public void OrderPriceTotal()
         {
@@ -95,7 +84,7 @@ namespace PizzaStore2
                 sb.AppendLine(pizza.ToString());
             }
 
-            sb.AppendLine($"OrderID: {OrderId}. {_totalPrice}");
+            sb.AppendLine($"OrderID: {OrderId}. Totalprice:{_totalPrice}");
 
             return sb.ToString();
         }

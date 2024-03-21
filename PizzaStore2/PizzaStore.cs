@@ -15,33 +15,37 @@ namespace PizzaStore2
             //Opgaver tilbage:
             //Ordreliste
             //Order (create, delete, update)
-            //Update (pizza, costumer, order)
+            //Update (costumer, order)
+            //Implamentere costumer.
             //Searchcriteria
             //user dialog.
-            //
-            //
-            //
             MenuCatalog catalog = new MenuCatalog();
-            Costumers costumers = new Costumers();
-            Order order = new Order(2);
+            Costumersadmin costumers = new Costumersadmin();
             catalog.PrintMenu();
-            order.AddCostumer(costumers.Costumerss1[0]);
+            Order order = new Order(2);
+            //costumers.UpdateCostumer("", "");
+            order.UpdatePizza(65, "Meatzza");
+            
+            //costumers.AddCostumer(costumers.Costumerss1[0]);
             Console.WriteLine($"{costumers.Costumerss1[0]}\nHan bestiller {order.NumberOfPizzas} pizzaer.");
             order.AddPizzaToOrder(catalog.MenuCatalogList1[0]);
             order.AddPizzaToOrder(catalog.MenuCatalogList1[1]);
-            order.UpdatePizza(65,"Margarita");
             order.OrderPriceTotal();
             Console.WriteLine(order.ToString());
-
-
-            Order order2 = new Order(3);
-            Console.WriteLine($"{costumers.Costumerss1[1]} Han bestiller: {order2.NumberOfPizzas} pizzaer.");
+            Console.ReadKey(false);
+            Console.Clear();
+            
+            Order order2 = new Order(2);
+            //costumers.AddCostumer(costumers.Costumerss1[1]);
+            Console.WriteLine($"{costumers.Costumerss1[1]}\nHan bestiller: {order2.NumberOfPizzas} pizzaer.");
             order2.AddPizzaToOrder(catalog.MenuCatalogList1[2]);
             order2.AddPizzaToOrder(catalog.MenuCatalogList1[1]);
             order2.AddPizzaToOrder(catalog.MenuCatalogList1[0]);
-            order2.RemovePizzaFromOrder(catalog.MenuCatalogList1[1]);
             order2.OrderPriceTotal();
-            Console.WriteLine($"{order2.ToString()}");
+            Console.WriteLine(order2.ToString());
+
+            
+
             Console.ReadKey();
         }
     }
