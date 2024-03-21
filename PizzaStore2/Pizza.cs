@@ -15,8 +15,8 @@ namespace PizzaStore2
             _pizzaName = PizzaName;
             _price = Price;
         }
-        public string PizzaName { get { return _pizzaName; } }
-        public int Price { get { return _price; } }
+        public string PizzaName { get { return _pizzaName; } set { _pizzaName = value; } }
+        public int Price { get => _price; set => _price = value; }
 
         public override string ToString()
         {

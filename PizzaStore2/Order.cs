@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace PizzaStore2
 {
     public class Order
     {
+        #region Instance Field
         private Pizza _pizza;
         private Costumer _name;
         private Pizza _price;
@@ -20,7 +22,10 @@ namespace PizzaStore2
         private int _numberOfPizzas;
         private List<Pizza> _pizzaList = new List<Pizza>();
         private List<Costumer> _costumerList = new List<Costumer>();
-        public Order() 
+        #endregion
+
+        #region Constructor
+        public Order(int NumberOfPizzas) 
         {
             _orderId = _idcounter;
             _idcounter++;
@@ -30,8 +35,10 @@ namespace PizzaStore2
             _date = DateTime.Now;
             _price = Price;
             _numberOfPizzas = NumberOfPizzas;
-
         }
+        #endregion
+
+        #region Properties
         public Pizza Pizza { get => _pizza; set => _pizza = value; }
         public Costumer Name { get => _name; set => _name = value; }
         public Pizza Price { get => _price; set => _price = value; }
@@ -39,14 +46,28 @@ namespace PizzaStore2
         public DateTime Date { get { return _date; } }
         public int OrderId { get => _orderId; private set => _orderId = value; }
         public int OrderNumber { get { return _orderNumber; } }
-
         public int NumberOfPizzas { get => _numberOfPizzas; set => _numberOfPizzas = value; }
+        #endregion
 
-        public void OrderPriceTotal()
+        #region Methods
+        public void AddCostumer(Costumer costumer)
         {
-            foreach (Pizza pizza in _pizzaList)
-            { 
-                _totalPrice += pizza.Price; 
+            _costumerList.Add(costumer);
+        }
+        public void RemoveCostumer(Costumer costumer)
+        {
+            _costumerList.Remove(costumer);
+            Console.WriteLine($"{costumer.CostumerName} har fortrudt sin ordre.");
+            _pizzaList.Remove(Pizza);
+        }
+        public void UpdatePizza(int newPrice, string name)
+        {
+            for (int i = 0; i < _pizzaList.Count; i++)
+            {
+                if (string.Equals(_pizzaList[i].PizzaName, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    _pizzaList[i].Price = newPrice;
+                }
             }
         }
         public void AddPizzaToOrder(Pizza Pizza)
@@ -59,15 +80,12 @@ namespace PizzaStore2
             _pizzaList.Remove(Pizza);
             _totalPrice -= Pizza.Price;
         }
-        public void AddCostumer(Costumer costumer)
+        public void OrderPriceTotal()
         {
-            _costumerList.Add(costumer);
-        }
-        public void RemoveCostumer(Costumer costumer)
-        {
-            _costumerList.Remove(costumer);
-            Console.WriteLine($"{costumer.CostumerName} har trudt sin ordre.");
-            _pizzaList.Remove(Pizza);
+            foreach (Pizza pizza in _pizzaList)
+            {
+                _totalPrice += pizza.Price;
+            }
         }
         public override string ToString()
         {
@@ -77,9 +95,10 @@ namespace PizzaStore2
                 sb.AppendLine(pizza.ToString());
             }
 
-            sb.AppendLine($"totalprice: {_totalPrice}kr.");
+            sb.AppendLine($"OrderID: {OrderId}. {_totalPrice}");
 
             return sb.ToString();
         }
+        #endregion
     }
 }
