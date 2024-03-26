@@ -15,33 +15,25 @@ namespace PizzaStore2
             #region Menu & Customers
             MenuCatalog catalog = new MenuCatalog();
             catalog.PrintMenu();
-            #endregion
-
-            #region Newpizza 
-            //costumers.UpdateCostumer("", "");
-            Console.ReadKey(false);
-            Console.Clear();
-            catalog.NewPizza("Tytyty", 100);
-            Console.WriteLine(catalog.ToString());
             Console.ReadKey(false);
             Console.Clear();
             #endregion
 
-            #region Update Pizza
+            #region Update Pizza, New Pizza & DeletePizza
             catalog.UpdatePizza(65, "Margarita");
+            catalog.NewPizza("Tytyty", 100);
+            catalog.DeletePizza(catalog.MenuCatalogList1[1]);
             catalog.PrintMenu();
             Console.ReadKey(false);
             Console.Clear();
             #endregion
 
             #region Order 1
-
             Order order = new Order(2);
-            //costumers.AddCostumer(costumers.Costumerss1[0]);
             Console.WriteLine($"Jørgen\nHan bestiller {order.NumberOfPizzas} pizzaer.");
-            order.AddPizzaToOrder(catalog.MenuCatalogList1[1]);
+            order.AddPizzaToOrder(catalog.MenuCatalogList1[0]);
             order.AddPizzaToOrder(catalog.MenuCatalogList1[2]);
-            order.AddPizzaToOrder(catalog.MenuCatalogList1[4]);
+            order.AddPizzaToOrder(catalog.MenuCatalogList1[3]);
             order.OrderPriceTotal();
             Console.WriteLine(order.ToString());
             Console.ReadKey(false);
@@ -50,9 +42,8 @@ namespace PizzaStore2
 
             #region Order 2
             Order order2 = new Order(3);
-            //costumers.AddCostumer(costumers.Costumerss1[1]);
             Console.WriteLine($"Ulrik\nHan bestiller {order2.NumberOfPizzas} pizzaer.");
-            order2.AddPizzaToOrder(catalog.MenuCatalogList1[1]);
+            order2.AddPizzaToOrder(catalog.MenuCatalogList1[0]);
             order2.AddPizzaToOrder(catalog.MenuCatalogList1[2]);
             order2.AddPizzaToOrder(catalog.MenuCatalogList1[3]);
             order2.OrderPriceTotal();
@@ -64,7 +55,18 @@ namespace PizzaStore2
             #region Try and Catch Exception
             try
             {
-                Pizza Pizza = catalog.GetPizza("Tytyty");
+                Pizza Pizza = catalog.GetPizza("Yousuck");
+                Console.WriteLine("Found pizza: " + Pizza.PizzaName);
+            }
+            catch (PizzaNotFoundExcep ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            Console.ReadKey(false);
+            Console.Clear();
+            try
+            {
+                Pizza Pizza = catalog.GetPizza("Margarita");
                 Console.WriteLine("Found pizza: " + Pizza.PizzaName);
             }
             catch (PizzaNotFoundExcep ex)

@@ -74,6 +74,10 @@ namespace PizzaStore3
                 }
             }
         }
+        public void DeletePizza(Pizza pizza)
+        {
+            MenuCatalogList1.Remove(pizza);
+        }
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
