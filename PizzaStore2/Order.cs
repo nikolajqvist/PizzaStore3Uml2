@@ -75,7 +75,7 @@ namespace PizzaStore2
                 sb.AppendLine(pizza.ToString());
             }
 
-            sb.AppendLine($"OrderID: {OrderId}. Totalprice:{_totalPrice}");
+            sb.AppendLine($"OrderID: {OrderId} & {Date}. Totalprice:{_totalPrice}");
 
             return sb.ToString();
         }
