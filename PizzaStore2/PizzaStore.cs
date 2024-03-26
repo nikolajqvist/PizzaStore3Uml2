@@ -27,6 +27,13 @@ namespace PizzaStore2
             Console.Clear();
             #endregion
 
+            #region Update Pizza
+            catalog.UpdatePizza(65, "Margarita");
+            catalog.PrintMenu();
+            Console.ReadKey(false);
+            Console.Clear();
+            #endregion
+
             #region Order 1
 
             Order order = new Order(2);
@@ -34,6 +41,7 @@ namespace PizzaStore2
             Console.WriteLine($"Jørgen\nHan bestiller {order.NumberOfPizzas} pizzaer.");
             order.AddPizzaToOrder(catalog.MenuCatalogList1[1]);
             order.AddPizzaToOrder(catalog.MenuCatalogList1[2]);
+            order.AddPizzaToOrder(catalog.MenuCatalogList1[4]);
             order.OrderPriceTotal();
             Console.WriteLine(order.ToString());
             Console.ReadKey(false);
@@ -63,14 +71,10 @@ namespace PizzaStore2
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-            Console.ReadKey(false);
-            Console.Clear();
+            Console.ReadKey();
             #endregion
 
-            #region Update Pizza
-            catalog.UpdatePizza(65, "Margarita");
-            catalog.PrintMenu();
-            #endregion
+
         }
     }
 }
