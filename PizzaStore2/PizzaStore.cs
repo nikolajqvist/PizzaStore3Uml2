@@ -11,7 +11,17 @@ namespace PizzaStore2
     public class PizzaStore
     {
         public void MenuChoice()
-        {          
+        {
+            #region Costumers
+            CostumerCatalog costumers = new CostumerCatalog();
+            Console.WriteLine("Costumer list:");
+            costumers.CostumersInList();
+            costumers.CreateCostumer("Jannik", 41);            
+            costumers.UpdateCostumer(23, "Jørgen");
+            costumers.CostumersInList();
+            Console.ReadKey(false);
+            Console.Clear();
+            #endregion
             #region Menu & Customers
             MenuCatalog catalog = new MenuCatalog();
             catalog.PrintMenu();
@@ -30,10 +40,11 @@ namespace PizzaStore2
 
             #region Order 1
             Order order = new Order(2);
-            Console.WriteLine($"Jørgen\nHan bestiller {order.NumberOfPizzas} pizzaer.");
+            Console.WriteLine($"{costumers.Costumers[1]}\nHan bestiller {order.NumberOfPizzas} pizzaer.");
             order.AddPizzaToOrder(catalog.MenuCatalogList1[0]);
             order.AddPizzaToOrder(catalog.MenuCatalogList1[2]);
             order.AddPizzaToOrder(catalog.MenuCatalogList1[3]);
+            order.RemovePizzaFromOrder(catalog.MenuCatalogList1[3]);
             order.OrderPriceTotal();
             Console.WriteLine(order.ToString());
             Console.ReadKey(false);
@@ -42,7 +53,7 @@ namespace PizzaStore2
 
             #region Order 2
             Order order2 = new Order(3);
-            Console.WriteLine($"Ulrik\nHan bestiller {order2.NumberOfPizzas} pizzaer.");
+            Console.WriteLine($"{costumers.Costumers[3]}\nHan bestiller {order2.NumberOfPizzas} pizzaer.");
             order2.AddPizzaToOrder(catalog.MenuCatalogList1[0]);
             order2.AddPizzaToOrder(catalog.MenuCatalogList1[2]);
             order2.AddPizzaToOrder(catalog.MenuCatalogList1[3]);

@@ -1,0 +1,7 @@
+Som ejer vil gerne kunne oprette en ny pizza til menuen for at få flere kunder.*/
+Som ejer vil jeg gerne kunne opdatere priserne på mine pizzer for at give tilbud og få flere kunder.*/
+Som ejer vil jeg gerne kunne oprette en ordre så jeg kan tilføje flere pizzaer til en ordre og tjene flere penge.//
+Som ejer vil jeg gerne kunne slette en pizza fra menuen så jeg altid kan have de rigtige pizzaer på menuen.*/
+Som kunde vil jeg gerne kunne se en menu af pizzaer så jeg kan bestille pizzaer fordi jeg er sulten.*/
+Som kunde vil jeg gerne kunne fjerne pizzaer fra min ordre hvis jeg fortryder og ikke vil have pizzaen alligevel.*/
+Som kunde vil jeg gerne kunne se prisen for hele min ordre så jeg ved hvor meget jeg skal betale.*/

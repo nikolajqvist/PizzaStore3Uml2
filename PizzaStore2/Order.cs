@@ -50,7 +50,6 @@ namespace PizzaStore2
         #endregion
 
         #region Methods
-
         public void AddPizzaToOrder(Pizza Pizza)
         {
             _pizzaList.Add(Pizza);
