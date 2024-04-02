@@ -22,7 +22,6 @@ namespace PizzaStore2
         private int _delivery = 40;
         private int _numberOfPizzas;
         private List<Pizza> _pizzaList = new List<Pizza>();
-        private List<Pizza> MenuCatalogList = new List<Pizza>();
         #endregion
 
         #region Constructor
@@ -46,7 +45,6 @@ namespace PizzaStore2
         public int OrderId { get => _orderId; private set => _orderId = value; }
         public int OrderNumber { get { return _orderNumber; } }
         public int NumberOfPizzas { get => _numberOfPizzas; set => _numberOfPizzas = value; }
-        public List<Pizza> MenuCatalogList1 { get => MenuCatalogList; set => MenuCatalogList = value; }
         #endregion
 
         #region Methods
