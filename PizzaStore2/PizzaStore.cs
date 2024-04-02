@@ -22,6 +22,7 @@ namespace PizzaStore2
             Console.ReadKey(false);
             Console.Clear();
             #endregion
+
             #region Menu & Customers
             MenuCatalog catalog = new MenuCatalog();
             catalog.PrintMenu();
